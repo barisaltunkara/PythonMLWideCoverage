@@ -14,6 +14,8 @@ from sklearn.impute import SimpleImputer
 from sklearn import preprocessing
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
+from sklearn.linear_model import LinearRegression
+import statsmodels.api as sm
 
 veriler = pd.read_csv("data/veriler.csv")
 
@@ -52,6 +54,48 @@ s = pd.concat([sonuc, sonuc2], axis=1)
 
 s2 = pd.concat([s, sonuc3], axis=1)
 
+x_train, x_test, y_train, y_test = train_test_split(s, sonuc3, test_size=0.33, random_state=0)
+
+regressor = LinearRegression()
+regressor.fit(x_train, y_train)
+
+y_pred = regressor.predict(x_test)
+
+boy = s2.iloc[:, 3:4].values
+#print(boy)
+
+sol = s2.iloc[:, :3]
+sag = s2.iloc[:, 4:]
+
+veri = pd.concat([sol, sag], axis=1)
+
+x_train, x_test, y_train, y_test = train_test_split(veri, boy, test_size=0.33, random_state=0)
+
+regressor = LinearRegression()
+regressor.fit(x_train, y_train)
+
+y_pred = regressor.predict(x_test)
+
+# Backward Elimination
+X = np.append(arr=np.ones((22, 1)).astype(int), values=veri, axis=1)
+
+X_l = veri.iloc[:, [0, 1, 2, 3, 4, 5]].values
+X_l = np.array(X_l, dtype=float)
+model = sm.OLS(boy, X_l).fit()
+
+print(model.summary())
+
+X_l = veri.iloc[:, [0, 1, 2, 3, 5]].values
+X_l = np.array(X_l, dtype=float)
+model = sm.OLS(boy, X_l).fit()
+
+print(model.summary())
+
+X_l = veri.iloc[:, [0, 1, 2, 4, 5]].values
+X_l = np.array(X_l, dtype=float)
+model = sm.OLS(boy, X_l).fit()
+
+print(model.summary())
 
 
 
