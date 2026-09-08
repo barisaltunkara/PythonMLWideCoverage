@@ -17,7 +17,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LinearRegression
 import statsmodels.api as sm
 
-veriler = pd.read_csv("data/veriler.csv")
+veriler = pd.read_csv("../data/veriler.csv")
 
 # Label Encoder
 ulke = veriler.iloc[:, 0:1].values.copy()

@@ -17,7 +17,7 @@ from sklearn.preprocessing import StandardScaler, PolynomialFeatures
 from sklearn.linear_model import LinearRegression
 import statsmodels.api as sm
 
-maaslar = pd.read_csv("data/maaslar.csv")
+maaslar = pd.read_csv("../data/maaslar.csv")
 
 #plt.plot(maaslar["Egitim Seviyesi"], maaslar.maas)
 #plt.show()

@@ -30,7 +30,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-veriler = pd.read_csv("data/maaslar.csv")
+veriler = pd.read_csv("../data/maaslar.csv")
 x = veriler.iloc[:, 1:2].values
 y = veriler.iloc[:, 2:].values
 

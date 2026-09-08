@@ -25,7 +25,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LinearRegression
 
 # Scipy Linear Regression
-df = pd.read_csv("data/satisverileri.csv")
+df = pd.read_csv("../data/satisverileri.csv")
 m, b, r, p, err = stats.linregress(df.Aylar, df.Satislar)
 x = range(np.min(df.Aylar), np.max(df.Aylar))
 y = m*x + b

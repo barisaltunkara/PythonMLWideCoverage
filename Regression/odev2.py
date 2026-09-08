@@ -18,7 +18,7 @@ import statsmodels.api as sm
 from scipy import stats
 
 
-veriler = pd.read_csv("data/maaslar_yeni.csv")
+veriler = pd.read_csv("../data/maaslar_yeni.csv")
 
 x = veriler.iloc[:, 2:5].values
 y = veriler.iloc[:, 5:].values

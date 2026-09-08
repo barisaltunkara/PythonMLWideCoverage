@@ -15,7 +15,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LinearRegression
 import statsmodels.api as sm
 
-veriler = pd.read_csv("data/odev_tenis.csv")
+veriler = pd.read_csv("../data/odev_tenis.csv")
 
 veriler2 = veriler.iloc[:, [0, 3, 4]].apply(preprocessing.LabelEncoder().fit_transform) # Kolay yol
 

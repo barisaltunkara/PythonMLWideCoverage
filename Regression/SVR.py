@@ -20,7 +20,7 @@ from sklearn.svm import SVR
 from sklearn.linear_model import LinearRegression
 import statsmodels.api as sm
 
-maaslar = pd.read_csv("data/maaslar.csv")
+maaslar = pd.read_csv("../data/maaslar.csv")
 
 x = maaslar.iloc[:, 1:2].values
 y = maaslar.iloc[:, 2:].values
