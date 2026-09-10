@@ -22,6 +22,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn import preprocessing
+from sklearn.metrics import confusion_matrix
 
 veriler = pd.read_csv("../data/veriler.csv")
 
@@ -30,9 +31,9 @@ y = veriler.iloc[:, 4:].values
 
 le = preprocessing.LabelEncoder()
 
-y = le.fit_transform(y)
+y = le.fit_transform(y.ravel())
 
-x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=0)
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=1)
 
 sc = StandardScaler()
 
@@ -44,5 +45,8 @@ log_reg = LogisticRegression(random_state=0)
 log_reg.fit(X_train, y_train)
 
 y_pred = log_reg.predict(X_test)
+
+cm = confusion_matrix(y_test, y_pred)
+print(cm)
 
 
