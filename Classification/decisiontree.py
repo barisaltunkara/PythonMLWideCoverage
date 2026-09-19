@@ -15,6 +15,14 @@ InfoA(D) = sum((|Dj|/|D|)*I(Dj))
 Gain(A) = Info(D) - InfoA(D)
 """
 
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn import preprocessing
+from sklearn.metrics import confusion_matrix
+from sklearn.tree import DecisionTreeClassifier
 import math
 
 def info(a, b):
@@ -36,10 +44,31 @@ def infoA(a, b, c, list1):
 
 print(info(9, 5) - infoA(5, 4, 5, [[2,3],[4,0],[3,2]]))
 
+veriler = pd.read_csv("../data/veriler.csv")
 
+x = veriler.iloc[:, 1:4].values
+y = veriler.iloc[:, 4:].values
 
+le = preprocessing.LabelEncoder()
 
+y = le.fit_transform(y.ravel())
 
+x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.33, random_state=1)
+
+sc = StandardScaler()
+
+X_train = sc.fit_transform(x_train) 
+X_test = sc.transform(x_test)
+
+tree = DecisionTreeClassifier(criterion="entropy")
+tree.fit(X_train, y_train)
+
+y_pred_tree = tree.predict(X_test)
+
+cm = confusion_matrix(y_test, y_pred_tree)
+print(cm)
+
+# Varsayılan olarak karar ağacı Gini kullanır. Gini log2(pi) yerine direkt pi kullanılarak hesaplanır.
 
 
 
