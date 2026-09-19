@@ -34,9 +34,11 @@ rfc = RandomForestClassifier(criterion="entropy", n_estimators=10)
 rfc.fit(X_train, y_train)
 
 y_pred_rfc = rfc.predict(X_test)
+y_pred_proba = rfc.predict_proba(X_test)
 
 cm = confusion_matrix(y_test, y_pred_rfc)
 print(cm)
+print(y_pred_proba)
 
 
 
