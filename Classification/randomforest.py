@@ -11,7 +11,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
 from sklearn import preprocessing
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, roc_curve
 from sklearn.ensemble import RandomForestClassifier
 
 veriler = pd.read_csv("../data/veriler.csv")
@@ -30,7 +30,7 @@ sc = StandardScaler()
 X_train = sc.fit_transform(x_train) 
 X_test = sc.transform(x_test)
 
-rfc = RandomForestClassifier(criterion="entropy", n_estimators=10)
+rfc = RandomForestClassifier(criterion="entropy", n_estimators=10, random_state=1)
 rfc.fit(X_train, y_train)
 
 y_pred_rfc = rfc.predict(X_test)
@@ -40,7 +40,17 @@ cm = confusion_matrix(y_test, y_pred_rfc)
 print(cm)
 print(y_pred_proba)
 
+fpr, tpr, thold = roc_curve(y_test, y_pred_proba[:, 0])
 
+print(fpr, tpr)
+
+plt.plot(fpr, tpr)
+#plt.plot(np.arange(0, 1.1, 0.20), fpr)
+plt.plot(np.arange(0, 1.1, 0.20), np.arange(0, 1.1, 0.20), "r")
+plt.title("ROC Curve")
+plt.xlabel("FPR")
+plt.ylabel("TPR")
+plt.show()
 
 
 
