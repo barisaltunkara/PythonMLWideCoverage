@@ -24,6 +24,16 @@ for i in range(1, 10):
     kmeans = KMeans(n_clusters=i, init="k-means++", random_state=0)
     kmeans.fit(X)
     sonuclar.append(kmeans.inertia_) # inertia bize WCSS verilerini verir
-
-
+    
 plt.plot(range(1, 10), sonuclar)
+plt.show()
+
+kmeans = KMeans(n_clusters=4, init="k-means++", random_state=0)
+y_pred = kmeans.fit_predict(X)
+
+plt.scatter(X[y_pred==0, 0], X[y_pred==0, 1], s=100, c="red")
+plt.scatter(X[y_pred==1, 0], X[y_pred==1, 1], s=100, c="green")
+plt.scatter(X[y_pred==2, 0], X[y_pred==2, 1], s=100, c="blue")
+plt.scatter(X[y_pred==3, 0], X[y_pred==3, 1], s=100, c="yellow")
+plt.show()
+
