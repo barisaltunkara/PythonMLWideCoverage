@@ -22,7 +22,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from apyori import apriori # ymoch/apyori Github file
 
-veriler = pd.read_csv("data/sepet.csv", header=None)
+veriler = pd.read_csv("../data/sepet.csv", header=None)
 
 t = []
 for i in range(0, 7501):

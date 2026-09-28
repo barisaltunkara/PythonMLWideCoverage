@@ -10,7 +10,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 
-veriler = pd.read_csv("data/musteriler.csv")
+veriler = pd.read_csv("../data/musteriler.csv")
 
 X = veriler.iloc[:, 3:].values
 

@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans, AgglomerativeClustering
 import scipy.cluster.hierarchy as sch
 
-veriler = pd.read_csv("data/musteriler.csv")
+veriler = pd.read_csv("../data/musteriler.csv")
 
 X = veriler.iloc[:, 3:].values
 
